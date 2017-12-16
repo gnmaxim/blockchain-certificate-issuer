@@ -14,18 +14,18 @@ contract Issuer {
     mapping(address => certificateData) public issuedCerts;
     address[] public certificates;
 
-    function Issuer() {
+    function Issuer() public {
         owner = msg.sender;
     }
 
-    function issueCertificate() returns (address certificate) {
+    function issueCertificate() public returns (address certificate) {
         /* Prepare data for certificate that has to be issued */
-        certificateData newCertData;
+        certificateData memory newCertData;
 
         newCertData.blockTime = block.timestamp;
 
         /* Deploy on the Blockchain */
-        address newCert = new Certificate();
+        Certificate newCert = new Certificate();
         LogNewCertificate(newCert);
 
         /* tmp */

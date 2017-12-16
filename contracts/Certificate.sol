@@ -3,13 +3,17 @@ pragma solidity ^0.4.18;
 
 
 contract Certificate {
-    // msg.sender with tx.origin
+    address public certOwner;
+    address public issuer;
+    address public issuerOwner;
+    uint256 public blockId;
 
-    function Certificate() {
-        // constructor
+    function Certificate() public {
+        issuer = msg.sender;
+        issuerOwner = tx.origin;
     }
 
-    function eatYourself() constant public returns (string something) {
-        return "Here to you something, and yes, I am boring.";
+    function eatYourself() public constant returns (string) {
+        return "asd";
     }
 }

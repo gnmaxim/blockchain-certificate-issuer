@@ -2,10 +2,10 @@
 import "../stylesheets/app.css";
 
 // Import libraries we need.
-// import { default as Web3 } from 'web3';
+// import { default as Web3} from 'web3';
+// var Web3 = require('web3');
 
 var web3 = new Web3(Web3.givenProvider || "ws://localhost:8546");
-
 import { default as contract } from 'truffle-contract'
 
 // Import contract artifacts to turn them into usable abstractions
@@ -31,7 +31,7 @@ window.App = {
         Certificate.setProvider(web3.currentProvider);
 
         // Get the initial account balance so it can be displayed.
-        web3.eth.getAccounts().then(function(accs) {
+        web3.eth.getAccounts(function(err, accs) {
             if (err != null) {
                 alert("There was an error fetching your accounts.");
                 return;
@@ -44,8 +44,6 @@ window.App = {
 
             accounts = accs;
             account = accounts[0];
-
-            console.log(account);
         });
 
         self.buyCertificate();
