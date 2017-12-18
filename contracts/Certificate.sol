@@ -13,7 +13,7 @@ contract Certificate {
         issuerOwner = tx.origin;
     }
 
-    function eatYourself() public constant returns (string) {
+    function eatYourself() public pure returns (string) {
         return "asd";
     }
 }

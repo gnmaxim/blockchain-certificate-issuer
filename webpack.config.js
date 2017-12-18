@@ -30,7 +30,12 @@ module.exports = {
           presets: ['es2015'],
           plugins: ['transform-runtime']
         }
-      }
+    },
+     {
+         test: /\.sol$/,
+        loaders: ['solc-loader']
+     }
     ]
-  }
+},
+  node: {fs: 'empty'}
 }
