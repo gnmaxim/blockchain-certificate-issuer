@@ -17,8 +17,24 @@ input {
 }
 
 button {
-  font-size: 16px;
-  padding: 5px;
+    background-color: #555555;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 220px;
+    float: right;
+}
+
+
+td, th {
+    border-bottom: 1px solid #ddd;
+
 }
 
 h1, h2 {

@@ -4,40 +4,41 @@ import "./Certificate.sol";
 
 
 contract Issuer {
-    struct certificateData {
-        uint blockTime;
-    }
-
     event LogNewCertificate(address certificate);
 
     address public owner;
-    mapping(address => certificateData) public issuedCerts;
     address[] public certificates;
+
+    modifier onlyOwner {
+        if (msg.sender != owner)
+            revert();
+        _;
+    }
 
     function Issuer() public {
         owner = msg.sender;
     }
 
-    function issueCertificate() public returns (address certificate) {
-        /* Prepare data for certificate that has to be issued */
-        certificateData memory newCertData;
-
-        newCertData.blockTime = block.timestamp;
-
+    function issueCertificate(uint id, string info, uint product)
+        public onlyOwner returns (address certificate)
+    {
         /* Deploy on the Blockchain */
-        Certificate newCert = new Certificate();
+        Certificate newCert = new Certificate(id, info, product);
+
+        /* Launch an event to capture cert address externally */
         LogNewCertificate(newCert);
 
-        /* tmp */
+        /* Save address on the Issuer storage (blockchain) */
         certificates.push(newCert);
-
-        /* Map data to the deployed certificate's address */
-        issuedCerts[newCert] = newCertData;
 
         return newCert;
     }
 
-    function getPizzas() public constant returns (address[]) {
+    function getCertificates() public constant returns (address[]) {
         return certificates;
+    }
+
+    function getTotalCertificates() public constant returns (uint) {
+        return certificates.length;
     }
 }
