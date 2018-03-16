@@ -1,2 +1,4 @@
 # blockchain-certificate-issuer
-CO2 compensation certificate issuing application, saving them on the Ethereum Blockchain
+Generic certificate issuing application, which saves them on the Ethereum Blockchain.
+
+Fabric Pattern is used. A Issuer smartcontract maintains realesed certificates data.
